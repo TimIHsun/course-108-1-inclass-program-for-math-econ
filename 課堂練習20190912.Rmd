@@ -14,10 +14,11 @@ use_condaenv("myEnvironment", required = T)
 ```
 
 
-```{r}
-library(reticulate)
-conda_create("myEnvironment")
+```{python}
+
 ```
+
+
 
 
 
