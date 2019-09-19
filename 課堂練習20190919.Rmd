@@ -1,6 +1,6 @@
 ---
 title: "課堂練習"
-date: "9/12/2019"
+date: "9/19/2019"
 output: html_document
 ---
 
@@ -17,3 +17,8 @@ use_condaenv("myEnvironment", required = T)
 ```{python}
 
 ```
+
+
+
+
+
