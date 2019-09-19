@@ -15,10 +15,51 @@ use_condaenv("myEnvironment", required = T)
 
 
 ```{python}
+a=5
+type(a)
 
+```
+```{python}
+range
+```
+##沙盒安裝要在R
+```{r}
+
+conda_install("myEnvironment", # 沙盒環境名稱
+              c("numpy","pandas"))
+```
+
+```{r}
+conda_install("m-team", # 沙盒環境名稱
+              c("google-api-python-client"),
+              pip=TRUE) # 
+```
+
+```{python}
+string = "你好"
+string2 = '我很好' # 用單引號也可以
+type(string)
+numInteger = 3
+type(numInteger)
+#len(numInteger)
+numFloat = 3.1 #浮點運算
+type(numFloat)
+#len(numFloat)
+```
+
+```{python}
+len(string)
+```
+# bool 布林邏輯
+```{python}
+logiT=True
+type(logiT)
+logiF=False
+type(logiF)
 ```
 
 
-
-
+```{python}
+logiT * logiF
+```
 
