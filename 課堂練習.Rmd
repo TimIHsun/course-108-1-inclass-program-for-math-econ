@@ -11,6 +11,7 @@ library(reticulate)
 use_python("/Users/tim/anaconda3/envs/myEnvironment",
            required = T)
 use_condaenv("myEnvironment", required = T)
+conda_create("myEnvironment")
 ```
 
 

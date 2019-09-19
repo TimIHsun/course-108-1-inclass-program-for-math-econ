@@ -46,6 +46,13 @@ numFloat = 3.1 #浮點運算
 type(numFloat)
 #len(numFloat)
 ```
+```{python}
+string="你好嗎"
+```
+
+```{python}
+string
+```
 
 ```{python}
 len(string)
@@ -61,5 +68,172 @@ type(logiF)
 
 ```{python}
 logiT * logiF
+```
+```{python}
+List1 = [1,2,True,("tuple",False),{1,2,3}]
+type(List1)
+len(List1)
+```
+
+
+```{python}
+tupleC=(1,["a","b"],True)
+type(tupleC)
+print(tupleC)
+```
+
+```{python}
+listA=[1,2,True]
+listA
+type(listA)
+listB=[1,["a","b"],True] # nested list
+listB
+type(listB)
+```
+
+
+```{python}
+unpack1, un2, un3 = listA
+listA
+unpack1
+un2
+un3
+```
+#*吸收剩餘無法對應的元素; 無*採一對一對應unpack
+```{python}
+a, *b = listA
+listA
+a
+b
+type(b)
+```
+
+```{python}
+gradetuple = ("小明",88,72,"男")
+name, *grade, gender = gradetuple
+```
+
+```{python}
+name
+grade
+gender
+```
+### *可在前中後
+```{python}
+gradetuple2 = (80,73,"女")
+*grade2, gender2 = gradetuple2 
+grade2
+gender2
+```
+```{python}
+setD={1,"a",(1,4)}
+type(setD)
+print(setD)
+setE={True,False}
+print(setE)
+setF={1,"b",[1,4]} # list is not hashable
+```
+
+
+```{python}
+setG={1,"b",(1,4,(5,8))}
+print(setG)
+setH={1,"b",(1,4,[5,8])}
+```
+
+```{python}
+setE={"a","b","b"}
+print(setE)
+```
+#set is like unique in R
+```{python}
+listY=[1,1,3,0,1,0,2]
+list(set(listY))
+```
+
+```{python}
+listA
+listA[0] # 從0開始數
+listA[1]
+listA[2]
+listA[3] # 沒有3
+```
+
+```{python}
+tupleC
+tupleC[0] # 從0開始數
+tupleC[1]
+tupleC[2]
+tupleC[3] # 沒有3
+```
+
+```{python}
+listA = [('Mary','John'),('A2838','C8898'),(89,73)]
+len(listA) # 元素個數
+listA[0] # 取第0個元素
+listA[0][1] # 取第0個元素出在，接著取它的第1個元素
+
+type(listA[0])
+type(listA[0][1])
+```
+```{python}
+tupleC=(1,["a","b"],True)
+tupleC[1][1]
+```
+
+
+```{python}
+listA[0:2]
+listA[0:3]
+```
+
+```{python}
+studentId= 4107732882
+studentId[3]
+```
+```{python}
+str(studentId)[3]
+```
+
+```{python}
+listA=['A','B','C','D','E','F','G','H','I','J']
+listA
+listA[0:5:1]
+listA[0:5]
+listA[0:5:2]
+listA[:5] # 前面5個
+```
+
+```{python}
+listA
+listA[-2:5:-1]
+listA[-2:5:1]
+listA[-2:-6:-1]
+listA[-5:-1:1]
+listA[-5:] # 倒數後5個
+```
+
+```{python}
+listA[1:]
+listA[0:-1]
+```
+
+# 不規則選取
+```{python}
+[listA[0],listA[2]]
+```
+
+## generatoe comprehension
+```{python}
+list(listA[index] for index in [0,2])
+```
+1,8,3,4
+```{python}
+[listA[index] for index in [1,8,3,4]]
+```
+
+```{python}
+listB=[2,5,-1,31,-22,3,17,25]
+[listB[i] for i in [0,6,7]]
 ```
 
