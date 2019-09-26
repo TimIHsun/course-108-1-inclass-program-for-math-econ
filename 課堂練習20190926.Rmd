@@ -2,6 +2,8 @@
 title: "課堂練習"
 date: "9/12/2019"
 output: html_document
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +16,53 @@ use_condaenv("myEnvironment", required = T)
 ```
 
 
-```{python}
 
+## 1.7.1 key-value-pair
+```{python}
+dictionaryA ={"name": "Mary", "id": "A28374", "grade": 77}
+dictionaryA
 ```
+
+```{python}
+type(dictionaryA)
+len(dictionaryA)
+```
+
+```{python}
+dictionaryA["name"] = "Tom"
+dictionaryA
+```
+
+# 1.8
+```{python}
+sparseMatrix = {
+(0, 0): 3, 
+(0, 2): -2, 
+(0, 3): 11,
+(1, 1): 9, 
+(2, 1): 7, 
+(3, 3): -5}
+print(sparseMatrix)
+```
+
+```{python}
+grade = {
+  "學號" : [172,214,322,425,517],
+  "姓名" : ["小明","大雄","胖虎","小新","大白"],
+  "成績" : [80,60,90,70,50]
+}
+```
+
+```{python}
+# 小明成績
+grade["姓名"][0]
+grade["成績"][0]
+```
+
+```{python}
+{
+grade["姓名"][i] : grade["成績"][i] for i in [0,1,2,3,4]
+ }
+```
+
+
