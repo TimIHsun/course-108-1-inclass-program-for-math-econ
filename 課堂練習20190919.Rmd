@@ -30,10 +30,11 @@ conda_install("myEnvironment", # 沙盒環境名稱
 ```
 
 ```{r}
-conda_install("m-team", # 沙盒環境名稱
+conda_install("myEnvironment", # 沙盒環境名稱
               c("google-api-python-client"),
               pip=TRUE) # 
 ```
+
 
 ```{python}
 string = "你好"
@@ -66,6 +67,7 @@ type(logiF)
 ```
 
 
+
 ```{python}
 logiT * logiF
 ```
@@ -77,7 +79,7 @@ len(List1)
 
 
 ```{python}
-tupleC=(1,["a","b"],True)
+tupleC=(1,{"a","b"},True)
 type(tupleC)
 print(tupleC)
 ```
@@ -144,6 +146,7 @@ setH={1,"b",(1,4,[5,8])}
 ```{python}
 setE={"a","b","b"}
 print(setE)
+len(setE)
 ```
 #set is like unique in R
 ```{python}
@@ -191,6 +194,9 @@ listA[0:3]
 studentId= 4107732882
 studentId[3]
 ```
+
+
+
 ```{python}
 str(studentId)[3]
 ```
@@ -200,7 +206,7 @@ listA=['A','B','C','D','E','F','G','H','I','J']
 listA
 listA[0:5:1]
 listA[0:5]
-listA[0:5:2]
+listA[0:5:3]
 listA[:5] # 前面5個
 ```
 
@@ -223,7 +229,9 @@ listA[0:-1]
 [listA[0],listA[2]]
 ```
 
-## generatoe comprehension
+## generator comprehension
+
+(<expression> for <var> in <iterable>)
 ```{python}
 list(listA[index] for index in [0,2])
 ```
