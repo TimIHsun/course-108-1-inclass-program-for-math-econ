@@ -65,4 +65,352 @@ grade["姓名"][i] : grade["成績"][i] for i in [0,1,2,3,4]
  }
 ```
 
+```{python}
+sparseMatrix = {
+(0, 0): 3, 
+(0, 2): -2, 
+(0, 3): 11,
+(1, 1): 9, 
+(2, 1): 7, 
+(3, 3): -5}
+print(sparseMatrix)
+```
+```{python}
+sparseMatrix[(0,0)]
+```
+
+```{python}
+originalList=[1,2,"a"]
+definitionCopy=originalList # 定義式複製
+sliceCopy=originalList[:] # slice複製
+sliceCopy2=originalList.copy()
+sliceCopy
+sliceCopy2
+```
+#1.9copy
+## 定義式複製為連體嬰，改一個就會變換另一個的值
+因為他們存在同一個記憶體位置，拿的東西試同一個東西
+
+```{python}
+print(definitionCopy)
+print(originalList)
+
+definitionCopy[1]="b"
+print(definitionCopy)
+print(originalList)
+
+originalList[1]=2
+print(definitionCopy)
+print(originalList)
+```
+## slice copy 儲存位置不同，取出得直也不同
+```{python}
+originalList=[1,2,"a"]
+sliceCopy=originalList[:] # slice複製
+print(sliceCopy)
+print(originalList)
+
+sliceCopy[1]="b"
+print(sliceCopy)
+print(originalList)
+
+originalList[1]="f"
+print(sliceCopy)
+print(originalList)
+```
+
+treeA=[1,2,3,[4,5],[6,7]]
+-> 儲存方法為 [1,2,3,add1,add2]
+再另存add1和add2
+所以slice 複製的時候，雖然儲存位置不同，但任然是取出add1,add2
+所以改變add1,add2時會連動媽媽和複製的小孩
+
+```{python}
+treeA=[1,2,3,[4,5],[6,7]]
+copytreeA = treeA[:]
+copytreeA[0] = "a"
+copytreeA
+treeA
+copytreeA[3] = "b"
+copytreeA
+treeA
+```
+```{python}
+treeA=[1,2,3,[4,5],[6,7]]
+copytreeA = treeA[:]
+copytreeA[0] = "a"
+copytreeA
+treeA
+copytreeA[3][0] = "b"
+copytreeA
+treeA
+```
+
+
+```{python}
+treeA[4] = "5"
+treeA
+copytreeA
+```
+
+
+#1.9.3 deep copy
+```{python}
+original = [[0], 1]
+shallow = original[:]
+import copy
+deep = copy.deepcopy(original)
+
+print(original)
+print(shallow)
+print(deep)
+
+original[1]="2"
+print(original)
+print(shallow)
+print(deep)
+
+original[0][0]="2"
+print(original)
+print(shallow)
+print(deep)
+```
+
+#2.
+```{python}
+a=2
+b=3
+c=5
+a+b
+a>b
+(a>b or a<c)
+a; b; c # 內容沒有改變
+```
+
+```{python}
+listA=[2,3,"b"]
+listA
+listA.append(5) #method
+listA # 內容改變了 (mutable)
+stringA="Hello"
+stringA.upper() 
+stringA # 內容沒有改變 (immutable)
+```
+
+```{python}
+listA + [6] # operation
+listA
+listB= listA +[6]
+listB
+```
+
+```{python}
+numList=[3,2,11,43]
+```
+
+```{python}
+[numList[i]+3 for i in [0,1,2,3]]
+```
+
+```{python}
+[numList[i]>10 for i in [0,1,2,3]]
+```
+
+list的+,*和數學含義不同，不是數學運算
++為合併
+*為複製合併
+```{python}
+numList=[3,2,11,43]
+numList
+
+numList + [3] # 將list [3]接在後面
+numList + ["a","b"]
+```
+```{python}
+numList*2 # list複製兩次接在一起
+```
+```{python}
+setAA = {1,2,3}
+setAA + {3}
+```
+
+#2.1.2
+```{python}
+a="Hello, 你好嗎？"
+len(a) # 字（串）的長度包含空格
+b=["Hello"]
+len(b) # list元素個數
+```
+
+```{python}
+x = "Hello " + "World"
+x
+y = "wow..."*3
+y
+```
+
+```{python}
+x
+x[0:7]
+```
+
+```{python}
+x[:]
+```
+
+#2.1.4
+```{python}
+x=[1,2,3]
+y=[1,2,3]
+z=[1,2]
+x==y
+x==z
+```
+
+```{python}
+x is y #比較倉庫，非數值
+x is not y
+```
+```{python}
+5 in [1,5,3]
+[5] in [1,5,3]
+```
+
+```{python}
+5 in [[1],[5],[3]]
+[5] in [[1],[5],[3]]
+```
+
+```{python}
+x = set([1, 2, 3, 1, 3, 5]) 
+x
+# {1, 2, 3, 5}  
+3 in x
+```
+
+```{python}
+x = set([1, 2, 3, 1, 3, 5]) 
+y = set([1, 7, 8, 9])
+
+# union 聯集
+x | y   
+
+# join 交集
+x & y   
+```
+
+```{python}
+listF=[2,5,10,11,-1,7]
+```
+
+```{python}
+listF[0]>3
+listF[1]>3
+[listF[i]>3 for i in [0,1,2,3,4,5]]
+```
+```{python}
+listG=[4,7,-2,10,11,15]
+[listG[i] > listF[i] for i in [0,1,2,3,4,5]]
+```
+
+# 2.1.6
+```{python}
+int("12.1")
+int("12")
+```
+
+```{python}
+float("12") # 字串12轉數字
+int("12") # 字串12轉整數
+str(12) # 數字12轉字串
+bool("True") # 轉邏輯
+```
+
+
+跟R不伊樣
+```{python}
+listC=[2,3,4]
+str(listC)
+```
+
+```{python}
+[str(listC[i]) for i in [0,1,2]]
+```
+
+```{python}
+[i for i in "abc"]
+[i for i in {"A": 25, "B": 1, "C": 44}]
+[i for i in [0,5,8]]
+```
+
+```{python}
+list2iter=["a",2,"c"]
+[i for i in [0,1,2]]
+[i for i in range(0,3)] 
+[i for i in range(0,len(list2iter))] 
+
+[type(list2iter[i]) is str for i in range(0,3)]
+[type(list2iter[i]) == str for i in range(0,3)]
+```
+
+
+```{python}
+x="i am steven."
+x.capitalize() # 開頭大寫
+x.center(20) # 20個字元長度，描述放中間
+x.upper() # 全大寫
+x.lower() # 全小寫
+x.find("steven") # steven開始的位置
+```
+
+```{python}
+x="i am steven."
+x.capitalize() # 開頭大寫
+x.center(20) # 20個字元長度，描述放中間
+x.upper() # 全大寫
+x.lower() # 全小寫
+x.find("steven") # steven開始的位置
+```
+
+```{python}
+x1,x2,x3=x.split() # 以空格切
+print(x1)
+print(x2)
+print(x3)
+
+y="王小明,45歲,血型:A"
+y1,y2,y3=y.split(",") # 以,切
+print(y1); print(y2); print(y3)
+
+print(y.split(",",1)) # 只切（前面數來）第一刀
+print(y.split(",",2)) # 只切（前面數來）二刀
+```
+
+```{python}
+print(y.split(",",)) # 只切（前面數來）二刀
+```
+
+```{python}
+"{0}的{1}成績是{2}".format("小明", "經原", 50)  
+"{}的{}成績是{}".format("小明", "經原", 50) 
+"{1}的{0}成績是{2}".format("經原","小明", 50)   
+
+
+"{name}的{subject}成績是{grade}".format(
+  name="小明",grade=50,subject="經原") 
+```
+
+```{python}
+.format
+```
+
+string是immutable所以先換成list
+xlist.reverse()不需回存，因為method直接更改物件
+```{python}
+x="上海"
+xlist=list(x)
+xlist.reverse()
+print(xlist)
+"".join(xlist)
+```
 
