@@ -2,8 +2,10 @@
 title: "homework1"
 output: html_document
 params:
-  studentID: "你的學號"
-  studentName: "你的姓名"
+  studentID: "410673120"
+  studentName: "邱奕勳"
+editor_options: 
+  chunk_output_type: console
 ---
 # 注意事項
 
@@ -20,13 +22,14 @@ params:
 請先執以下code chunk開啟RStudio底下的Python環境：
 
   * 注意`use_python`的路徑及`use_condaenv`的沙盒環境必需改成你電腦的對應設定。
+
   
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval=F)
 
 library(reticulate)
-use_python("/anaconda3/envs/m-team/bin/python",required = T)
-use_condaenv("m-team", required = T)
+use_python("/Users/tim/anaconda3/envs/myEnvironment",required = T)
+use_condaenv("myEnvironment", required = T)
 ```
 
 ## 作答需知
@@ -52,31 +55,36 @@ x
 ### 1.1 class轉換
 取出x的第一個元素並將它轉成字串存在答案物件`x0_str`.
 ```{python ans11}
-# x0_str
+x0_str=str(x[0])
+x0_str
 ```
 
 ### 1.2 list comprehension
 將x由整數list轉成每個元素值皆為字串的字串list，存在答案物件`x_str`。（必需用到list comprehension）
 ```{python ans12}
-# x_str
+x_str = [str(x[i]) for i in range(0,len(x))]
+x_str
 ```
 
 ### 1.3 邏輯判斷
 取出x的第七個元素，判斷它是否小於50（小於為True）存在答案物件`x6_logi`
 ```{python ans13}
-# x6_logi
+x6_logi = x[6] < 50 
+x6_logi
 ```
 
 ### 1.4 邏輯判斷+list comprehension
 產生`x_logi`邏輯判斷list，原個元素為x對應元素是否小於50的邏輯判斷結果（小於為True)
 ```{python ans14}
-# x_logi
+x_logi = [x[i]<50 for i in range(0,len(x))]
+x_logi
 ```
 
 ### 1.5 邏輯運算
 計算x_logi中False的個數，存在答案物件`num_false`。 （
 ```{python ans15}
-# num_false
+num_false = len(x)-sum(x_logi)
+num_false
 ```
 
 ## 2
@@ -91,7 +99,11 @@ dict_business=df_business.to_dict()
 有多少公司的'公司所在地'在'桃園市'，請將數字存在`num_taoyuan`。
 
 ```{python ans21}
-# num_taoyuan
+num_taoyuan = sum(
+  [dict_business["公司所在地"][i][0:3] == "桃園市" for i in range(0,len(dict_business["公司所在地"]))]
+  )
+
+num_taoyuan
 ```
 
 ### 2.2
@@ -103,10 +115,10 @@ dict_business=df_business.to_dict()
 ## 3
 請先在r裡使用`conda_install()`安裝requests模組，接著執行以下程序得到台灣2019年不同舞蹈的表演資訊danceInfo。
 ```{python data3}
-import requests
+import requests as 
 response=requests.get("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=3")
-danceInfo=response.json()
 ```
+
 
 ### 3.1
 danceInfo的每個元素是一場表演的訊息，請找出它有多少場舞蹈表演，存在numDance的class int物件裡
