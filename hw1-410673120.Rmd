@@ -109,14 +109,19 @@ num_taoyuan
 ### 2.2
 有多少公司的'資本額'大於500000，請將數字存在`num_largeCapital`。
 ```{python ans22}
-# num_largeCapital
+num_largeCapital = sum(
+  [dict_business["資本額"][i] > 500000 for i in range(0,len(dict_business["資本額"]))]
+) 
+
+num_largeCapital
 ```
 
 ## 3
 請先在r裡使用`conda_install()`安裝requests模組，接著執行以下程序得到台灣2019年不同舞蹈的表演資訊danceInfo。
 ```{python data3}
-import requests as 
+import requests as requests
 response=requests.get("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=3")
+danceInfo=response.json()
 ```
 
 
