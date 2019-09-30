@@ -106,6 +106,7 @@ num_taoyuan = sum(
 num_taoyuan
 ```
 
+
 ### 2.2
 有多少公司的'資本額'大於500000，請將數字存在`num_largeCapital`。
 ```{python ans22}
@@ -119,7 +120,7 @@ num_largeCapital
 ## 3
 請先在r裡使用`conda_install()`安裝requests模組，接著執行以下程序得到台灣2019年不同舞蹈的表演資訊danceInfo。
 ```{python data3}
-import requests as requests
+import requests
 response=requests.get("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=3")
 danceInfo=response.json()
 ```
@@ -128,13 +129,15 @@ danceInfo=response.json()
 ### 3.1
 danceInfo的每個元素是一場表演的訊息，請找出它有多少場舞蹈表演，存在numDance的class int物件裡
 ```{python ans31}
-# numDance
+numDance = len(danceInfo)
+numDance
 ```
 
 ### 3.2
 第1場的表演名稱'title'是什麼？請存在名為title1的物件裡。
 ```{python ans32}
-# title1
+title1 = danceInfo[0]["title"]
+title1
 ```
 
 
@@ -142,14 +145,16 @@ danceInfo的每個元素是一場表演的訊息，請找出它有多少場舞�
 第1場的表演地點'location'在哪裡?請存在名為local1的物件裡。
 
 ```{python ans33}
-# local1
+local1 = danceInfo[0]["showInfo"][0]["location"]
+local1
 ```
 
 ### 3.4
 第1場的表演時間'time'為何？請存在名為time11的物件裡。
 
 ```{python ans34}
-# time1
+time1 = danceInfo[0]["showInfo"][0]["time"]
+time1
 ```
 
 ### 3.5
@@ -158,7 +163,15 @@ danceInfo的每個元素是一場表演的訊息，請找出它有多少場舞�
 [{'title': '原音舞絢', 'time': '2019/09/29 14:30:00', 'location': '台北市中山南路21號，藍白建築1樓'}, {'title': '國立彰化生活美學館108年「舞藝人生-土風舞藝術」推廣計畫-第四場', 'time': '2019/11/03 08:30:00', 'location': '彰化縣彰化市卦山路18號'}]
 
 ```{python ans35}
-# danceInfoList
+danceInfoList = [
+  {
+  "title" : danceInfo[i]["title"],
+  "time" : danceInfo[i]["showInfo"][0]["time"],
+  "location" : danceInfo[i]["showInfo"][0]["location"]
+  } for i in range(0,numDance)
+  ]
+
+danceInfoList[0:2]
 ```
 
 ### 3.6
@@ -166,5 +179,12 @@ danceInfo的每個元素是一場表演的訊息，請找出它有多少場舞�
 '【原音舞絢】將於2019/09/29 14:30:00在台北市中山南路21號，藍白建築1樓演出'
 
 ```{python ans36}
-# danceInfoStr
+danceInfoStr = [
+  "【"+danceInfo[i]["title"]+"】" +    
+  "將於"+str(danceInfo[i]["showInfo"][0]["time"])+
+  "在"+danceInfo[i]["showInfo"][0]["location"]+
+  "演出" 
+  for i in range(0,numDance)
+  ]
+danceInfoStr
 ```
