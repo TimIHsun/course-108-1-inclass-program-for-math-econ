@@ -171,7 +171,7 @@ danceInfoList = [
   } for i in range(0,numDance)
   ]
 
-danceInfoList[0:2]
+danceInfoList
 ```
 
 ### 3.6
@@ -181,7 +181,7 @@ danceInfoList[0:2]
 ```{python ans36}
 danceInfoStr = [
   "【"+danceInfo[i]["title"]+"】" +    
-  "將於"+str(danceInfo[i]["showInfo"][0]["time"])+
+  "將於"+danceInfo[i]["showInfo"][0]["time"]+
   "在"+danceInfo[i]["showInfo"][0]["location"]+
   "演出" 
   for i in range(0,numDance)
