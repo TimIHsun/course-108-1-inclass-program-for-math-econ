@@ -1,6 +1,6 @@
 ---
 title: "課堂練習"
-date: "9/12/2019"
+date: "09/26/2019"
 output: html_document
 editor_options: 
   chunk_output_type: inline
@@ -131,7 +131,7 @@ copytreeA = treeA[:]
 copytreeA[0] = "a"
 copytreeA
 treeA
-copytreeA[3] = "b"
+copytreeA[4] = "b"
 copytreeA
 treeA
 ```
@@ -174,7 +174,10 @@ original[0][0]="2"
 print(original)
 print(shallow)
 print(deep)
+
 ```
+
+
 
 #2.
 ```{python}
@@ -268,7 +271,7 @@ x==z
 ```
 
 ```{python}
-x is y #比較倉庫，非數值
+x is y #比較倉庫(儲存的地方)，非數值
 x is not y
 ```
 ```{python}
@@ -330,7 +333,10 @@ bool("True") # 轉邏輯
 跟R不伊樣
 ```{python}
 listC=[2,3,4]
-str(listC)
+type(listC[0])
+strC = str(listC)
+strC
+type(strC)
 ```
 
 ```{python}
@@ -377,13 +383,19 @@ x1,x2,x3=x.split() # 以空格切
 print(x1)
 print(x2)
 print(x3)
-
+s1,s2 = x.split("a")
+s1
+s2
 y="王小明,45歲,血型:A"
 y1,y2,y3=y.split(",") # 以,切
 print(y1); print(y2); print(y3)
 
 print(y.split(",",1)) # 只切（前面數來）第一刀
 print(y.split(",",2)) # 只切（前面數來）二刀
+```
+```{python}
+type(x1)
+type(s1)
 ```
 
 ```{python}
@@ -412,5 +424,94 @@ xlist=list(x)
 xlist.reverse()
 print(xlist)
 "".join(xlist)
+```
+
+```{python}
+listA=["小明",["微積分",70],["會計學",81]]
+listA.append(["經濟學", 77])
+listA
+```
+
+```{python}
+listB=["花花",["微積分",90],["會計學",61]]
+listBCopy=listB.copy()
+
+listB
+listB.extend(listA)
+len(listB)
+print(listB)
+```
+
+```{python}
+x=['start', 1, 2, 'hello', 'hi', 3]
+print(x)
+
+x.__delitem__(0) # 刪一個的method
+print(x)
+```
+
+```{python}
+y="hello"
+y[1:3]
+del y[1:3] #無法 del y[1:3]
+
+```
+
+```{python}
+yList = list(y)
+del yList[1:3]
+yList
+"".join(yList)
+```
+
+```{python}
+z = [[3, 5], [2, 9], [2, 3], [4, 1], [3, 2]]
+len(z)
+print(z)
+
+z.sort() # lexicographic sorting
+print(z)
+
+z.sort(key=sum) # based on sum function
+print(z)
+```
+
+```{python}
+z.reverse()
+z
+```
+
+```{python}
+listA=["Helen", "Alex", "John", "Mark","Alex"]
+listA.index("Alex") # 只找第一個出現的
+listA.count("Alex")
+```
+
+```{python}
+list1=[2]
+set1={2}
+tuple1Wrong=(2)
+tupleA=(2,)
+
+list1; set1; 
+tuple1Wrong
+tupleA
+```
+
+```{python}
+x = set([1, 2, 3, 1, 3, 5]) 
+x
+# {1, 2, 3, 5}  
+```
+```{python}
+x
+x.update({7,8}) # 加多個
+x
+x
+x.difference({7,8,10}) # 移多個，x - {7,8,10}
+x # 並沒有更動
+x
+x.difference_update({7,8,10})
+x
 ```
 

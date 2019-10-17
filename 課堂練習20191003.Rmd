@@ -1,6 +1,6 @@
 ---
 title: "課堂練習"
-date: "9/12/2019"
+date: "10/03/2019"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -56,7 +56,7 @@ dictionaryA.get("品項","無此key")
 
 ```{python}
 "日期" in dictionaryA
-"學號" in dicdictionaryA
+"學號" in dictionaryA
 ```
 
 # 硬轉dictionary成list 會只存key
@@ -118,7 +118,7 @@ lossCompany=[dict_finStatement["公司名稱"].get(i) for i in lossFirmKeys]
 
 
 
-#ch3 function(已內縮取function 內容)
+#ch3 function(以 內縮 取function 內容)
 ```{python}
 def myFun(x,y):
   z = x+y
@@ -221,5 +221,15 @@ def funtest(x):
 global1
 funtest(global1)
 global1
+```
+
+# practice
+
+```{python}
+greeting="Hellow zorld"
+iWrong=greeting.find('z')
+greeting=list(greeting)
+greeting[iWrong]="w"
+"".join(greeting)
 ```
 
