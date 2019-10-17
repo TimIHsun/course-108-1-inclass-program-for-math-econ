@@ -2,6 +2,8 @@
 title: "課堂練習"
 date: "10/17/2019"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -15,5 +17,188 @@ use_condaenv("myEnvironment", required = T)
 
 
 ```{python}
+def funDemo(x,y):
+  return x+y
+
+funDemo(1,1)
+```
+
+```{python}
+PythonFun={
+"funDemo": funDemo,
+}
+
+PythonFun["funDemo2"]=funDemo2 # 額外加一個不存在的元素
+
+PythonFun.get("funDemo")(1,1); # 或
+PythonFun["funDemo"](1,1)
+
+
+PythonFun.get("funDemo2")(); # 或
+PythonFun["funDemo2"]()
+```
+
+```{python}
+import requests
+response=requests.get("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=3")
+danceInfo=response.json()
+```
+
+```{python}
+lenList = list([])
+
+for i in range(len(danceInfo)):
+     lenList.append(len(danceInfo[i]["showInfo"]))
 
 ```
+
+```{python}
+type(lenList[0])
+```
+
+
+# 耗費記憶體
+```{python}
+num=0
+for i in range(len(lenList)):
+    num= num+lenList[i]
+
+```
+
+
+# 較不耗費記憶體 (iadd)
+```{python}
+sum1=0
+for i in range(len(lenList)):
+    sum1 += lenList[i] #method
+
+print(sum1)
+```
+
+
+```{python}
+dict_example = {
+    'list': [1, 3, -7, 4, 9, -5, 4],
+    'dict': {
+        "日期": [2001,2002,2003],
+        "金額": [21000,33000,45880]
+        },
+    'matrix': [
+        [2,5,4],
+        [2,-1,3]]
+}
+
+
+print("list")
+x=dict_example["list"]
+x
+[i for i in x]
+[i for i in range(len(x))]
+[i for i in enumerate(x)] # 產生tuple iterates
+```
+
+```{python}
+M=dict_example['matrix']
+M
+```
+#矩陣計算
+```{python}
+sumM = 0
+for i in (M[0]):
+    sumM += M[0][i]
+    
+print(sumM)
+```
+
+
+```{python}
+sumM = 0
+for i in (M[0]):
+    sumM += M[0][i]
+    
+print(sumM)
+```
+
+
+```{python}
+a=0
+
+for i in range(len(M)):
+    for j in range(len(M[i])):
+        a += M[i][j]
+```
+
+只加下三角
+```{python}
+covM= [
+[1,3,5],
+[3,1,7],
+[5,7,1]
+]
+covM
+```
+#Ans1
+```{python}
+a=0
+for i in range(len(covM)):
+    for j in range(len(covM[i])):
+        if j<=i:
+            a += covM[i][j]
+print(a)
+```
+#Ans2
+```{python}
+a=0
+for i in range(len(covM)):    
+    for j in range(len(covM[i])):
+        if j>i:
+          continue
+        a += covM[i][j]
+print(a)
+```
+#Ans3
+```{python}
+a=0
+for i in range(len(covM)):
+    for j in range(0,i+1):
+        if j<=i:
+            a += covM[i][j]
+print(a)
+```
+
+```{python}
+x=dict_example['list']
+x
+```
+
+```{python}
+import requests
+
+url = 'https://raw.githubusercontent.com/tpemartin/course-108-1-inclass-datavisualization/master/作品展示/homework2/homework2_008.RMD'
+
+myFile=requests.get(url)
+contentList=myFile.content.decode("utf-8").split("\n")
+```
+
+
+
+# newton's method
+
+```{python}
+def p(x):
+  return(x**3-x**2-1)
+
+def dp(x):
+  return(3*x**2-2*x)
+
+
+```
+
+```{python}
+x=1
+
+x = x-p(x)/dp(x)
+
+while abs(p(x))
+```
+
