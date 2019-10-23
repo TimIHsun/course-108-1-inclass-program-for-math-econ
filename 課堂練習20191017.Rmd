@@ -66,6 +66,7 @@ for i in range(len(lenList)):
 ```
 
 
+
 # 較不耗費記憶體 (iadd)
 ```{python}
 sum1=0
@@ -181,6 +182,46 @@ contentList=myFile.content.decode("utf-8").split("\n")
 ```
 
 
+#while
+```{python}
+x=dict_example['list']
+x
+```
+
+```{python}
+i=0
+while x[i]>0:
+    i+=1
+
+print(x[i])
+
+```
+
+```{python}
+def fact(n):
+    downByOne=n-1
+    while downByOne > 0:
+        n *= downByOne
+        downByOne -= 1
+    return n
+
+fact(5)
+```
+
+```{python}
+# demonstrating a `continue` statement in a loop
+x = 1
+while x < 4:
+     print("x = ", x, ">> 進入loop <<")
+     if x == 2:
+         print("x = ", x, "跳回開頭")
+         x += 1
+         continue
+     x += 1
+     print("到loop最底")
+```
+
+
 
 # newton's method
 
@@ -196,9 +237,43 @@ def dp(x):
 
 ```{python}
 x=1
+count=0
 
 x = x-p(x)/dp(x)
 
-while abs(p(x))
+while abs(p(x))>1e-10:
+    x -= p(x)/dp(x)
+
+x
+p(x)
+```
+
+```{python}
+x=1 
+while abs(p(x))>1e-10:
+    x -= p(x)/dp(x)
+    
+x
+```
+
+```{python}
+p=lambda x: x**3-x**2-1
+dp=lambda x: 3*x**2-2*x
+
+x=1
+count=0 # safe guard to avoid infinite loops
+while abs(p(x))>1e-10 and count <= 100:
+    x -= p(x)/dp(x)
+    count += 1
+    #p(x)
+
+x
+p(x)
+```
+
+```{python}
+x=1 
+while abs(p(x))>1e-10:
+    x -= p(x)/dp(x)
 ```
 
