@@ -108,7 +108,6 @@ hint: index_3ticks的前3個值是26，32，39。
 ```{python ans12}
 filelines.index()
 lineIndex = [filelines[i].find("```") for i in range(len(filelines))]
-[lineIndex[i] == 0 for i in range(len(lineIndex))]
 # index_3ticks
 ```
 
@@ -270,7 +269,8 @@ $$M_{2:3,3:5}=\left[\begin{array}{ccccc}
 \end{array}\right]$$
 並將它存在答案物件M_partial
 ```{python ans32}
-# M_partial
+M_partial=[M[1:3][0][2:5],M[1:3][1][2:5]]
+M_partial
 ```
 
 ### 3.3 matrix_get
@@ -291,5 +291,10 @@ hint: 答案正確的話例如，輸入`matrix_get(M,range(1,3),range(2,5))`會�
 即前一小題答案值。
 
 ```{python ans33}
+def matrix_get(matrix, rangeR, rangeC):
+    for i in rangeR:
+        for j in rangeC:
+            return([matrix[i][j]])
+
 # matrix_get
 ```
