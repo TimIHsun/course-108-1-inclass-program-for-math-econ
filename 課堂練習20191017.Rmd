@@ -277,3 +277,17 @@ while abs(p(x))>1e-10:
     x -= p(x)/dp(x)
 ```
 
+```{python}
+
+listExemple = [1,2,3,4,5]
+list1 = []
+for i in range(len(listExemple)):
+    list1.append(listExemple[i])
+
+```
+
+```{python}
+listExemple[i] for i in range(len(listExemple))
+```
+
+
