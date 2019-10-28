@@ -138,11 +138,12 @@ dict_chunks['language'][0]
 ```
 
 ```{python ans13}
+lanlist = [ filelines[index_3ticks[i]] for i in range(len(index_3ticks)) if int(i/2) == i/2 ]
 
 dict_chunks = {
   "start":[index_3ticks[i]+1 for i in range(len(index_3ticks)) if int(i/2) == i/2 ],
   "end":[index_3ticks[i]-1 for i in range(len(index_3ticks)) if int(i/2) != i/2],
-  "language":[chunk_lang(lanList[i]) for i in range(len(lanList))]
+  "language":[chunk_lang(lanlist[i]) for i in range(len(lanlist))]
  }
 dict_chunks
 
