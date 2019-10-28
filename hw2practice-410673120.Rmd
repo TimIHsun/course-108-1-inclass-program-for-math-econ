@@ -173,7 +173,7 @@ python_code_list =[]
 for i in range(len(dict_chunks["start"])):
       m=dict_chunks["start"][i]
       while m<dict_chunks["end"][i]+1:
-        python_code_list.append(filelines[m])
+        python_code_list.append(filelines[m]) #一個一個加
         m+=1
       
 python_code_list
@@ -184,7 +184,7 @@ comprehention 會產生多個list 在答案list裡
 las = []
 for i in range(0,3):
    las.append(filelines[i:i+2])
-lasL = [las[i:i+2] for i in range(len(las))]
+lasL = [las[i:i+2] for i in range(len(las))] #一群加一群加一群
 ```
 
 完成python_code_list後，若執行以下程序將得到一個只有python code的hw1-ans.py檔案。
