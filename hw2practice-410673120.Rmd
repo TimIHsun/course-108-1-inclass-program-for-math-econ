@@ -178,6 +178,14 @@ for i in range(len(dict_chunks["start"])):
       
 python_code_list
 ```
+#要用while否則儲存格式會有問題
+comprehention 會產生多個list 在答案list裡
+```{python}
+las = []
+for i in range(0,3):
+   las.append(filelines[i:i+2])
+lasL = [las[i:i+2] for i in range(len(las))]
+```
 
 完成python_code_list後，若執行以下程序將得到一個只有python code的hw1-ans.py檔案。
 ```{python}
