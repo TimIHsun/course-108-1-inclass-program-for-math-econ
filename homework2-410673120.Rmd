@@ -89,10 +89,11 @@ chunk_lang(chunk_start_example2)
 ```{python ans11}
 
 def chunk_lang(chunk_start):
-    if chunk_start.find("```{r") != -1:
+    if chunk_start.find("```{r") == 0:
         return('r') #要用return不能用print,否則1.3language會有儲存的問題
-    elif chunk_start.find("```{python") != -1:
+    elif chunk_start.find("```{python") == 0:
         return('python')
+        
 chunk_lang
 ```
 
@@ -145,8 +146,8 @@ dict_chunks = {
   "end":[index_3ticks[i]-1 for i in range(len(index_3ticks)) if int(i/2) != i/2],
   "language":[chunk_lang(lanlist[i]) for i in range(len(lanlist))]
  }
+ 
 dict_chunks
-
 ```
 
 
@@ -171,6 +172,7 @@ python_code_list[2]
 python_code_list =[]
 
 for i in range(len(dict_chunks["start"])):
+  if dict_chunks["language"][i] == "python":
       m=dict_chunks["start"][i]
       while m<dict_chunks["end"][i]+1:
         python_code_list.append(filelines[m])
