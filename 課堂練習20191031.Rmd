@@ -99,7 +99,7 @@ listBool_0 = df_grade0.成績 > 70 # or
 listBool_1 =df_grade0[[True, False, True, False, False]]
 listBool_0
 listBool_1
-df_grade0[df_grade0.成績 > 70] 
+df_grade0[df_grade0.成績 > 70]
 df_grade0[listBool_0] 
 ```
 
@@ -107,7 +107,10 @@ df_grade0[listBool_0]
 ```{python}
 df_grade0.loc[0,"姓名"]
 df_grade0.loc[2:4,"姓名"] 
+df_grade0.loc[0,['學號', '成績']]
 df_grade0.loc[2:4,"學號":"姓名"] #不會去掉尾巴
+df_grade0.loc[df_grade0.成績>70,:]
+df_grade0.loc[0,1]
 df_grade0.iloc[df_grade0.成績 > 70,:]
 df_grade0.loc[df_grade0.成績 > 70,:]
 df_grade0.iloc[listBool_0,:]
@@ -126,9 +129,12 @@ df_grade0.iloc[0:3,0:2]
 
 ```{python}
 df_grade0
+df_grade0.sample(n=10, replace=True)
 df_grade0.set_index("姓名") # 此時index有名稱
 df_grade5 = df_grade0.copy()
 df_grade5.set_index("姓名", inplace = True)
+df_grade5
+df_grade5.reset_index(inplace=True)
 df_grade5
 ```
 
@@ -155,12 +161,18 @@ df_grade1
 
 ```{python}
 df_grade1
-df_grade1.set_axis(['name','id','grade'],axis=1) # axis: 0表一般index, 1表columns
+df_grade1.set_axis(['name','id','grade'],axis=1, inplace= True) # axis: 0表一般index, 1表columns
 df_grade1
+df_grade1.rename_axis("name",axis=1)
 ```
 
 ```{python}
 listA=['a','b','c','a']
+m=[]
+for i in range(len(listA)):
+  if listA[i]=="a":
+    m+=listA[i]
+  
 arrayA=np.array(listA)
 arrayA[arrayA=='a']
 list(arrayA[arrayA=='a'])
@@ -192,8 +204,9 @@ df_fin.columns
 
 type(finStatement)
 finStatement["公司名稱"][finStatement["營業利益（損失）"] < 0]
-a=[finStatement["營業利益（損失）"] < 0]
-#finStatement.loc[a,:]
+a=finStatement["營業利益（損失）"] < 0
+df_fin.loc[a,"公司名稱"]
+df_fin.iloc[list(a),4]
 ```
 
 ```{python}
@@ -208,6 +221,8 @@ mymodule.pi
 ```
 
 ```{python}
-
+df_fin= pd.DataFrame(dict_finStatement)
+df_fin.loc[df_fin["營業利益（損失）"]<0 ,"公司名稱"]
 ```
+
 
