@@ -95,11 +95,11 @@ P_mood_cond_weather=df_jointP.copy()
 for i in range(len(marginP_weather)):
   P_mood_cond_weather.iloc[i]=df_jointP.iloc[i].divide(marginP_weather[i])
 
-P_mood_cond_mood=df_jointP.copy()
+P_weather_cond_mood=df_jointP.copy()
 for i in range(len(marginP_mood)):
-  P_mood_cond_mood.iloc[:,i]=df_jointP.iloc[:,i].divide(marginP_mood[i])
+  P_weather_cond_mood.iloc[:,i]=df_jointP.iloc[:,i].divide(marginP_mood[i])
 
-# q1ans['P_mood_cond_weather']=P_mood_cond_weather; q1ans['P_weather_cond_mood']=P_weather_cond_mood
+q1ans['P_mood_cond_weather']=P_mood_cond_weather; q1ans['P_weather_cond_mood']=P_weather_cond_mood
 ```
 
 
@@ -108,7 +108,7 @@ What is the probability of a person being sad given that the weather is sunny? N
 
 ```{python ans14}
 p_ans14=P_mood_cond_weather.loc["sunny","sad"]
-# q1ans['ans14']=p_ans14
+q1ans['ans14']=p_ans14
 ```
 
 ### 1.5 Estimation
@@ -116,8 +116,9 @@ p_ans14=P_mood_cond_weather.loc["sunny","sad"]
 After you left home for office, you notice the weather is cloudy. Which mood your colleague is more likely to have? Name your result as `est_mood`.
 
 ```{python ans15}
-P_mood_cond_weather.loc["cloudy",:]
-# q1ans['ans15']=est_mood
+moodLogi = max(P_mood_cond_weather.loc["cloudy",:]) == P_mood_cond_weather.loc["cloudy",:]
+est_mood= P_mood_cond_weather.columns[moodLogi][0]
+#q1ans['ans15']=est_mood
 ```
 
 ## 2. Numerical integration
