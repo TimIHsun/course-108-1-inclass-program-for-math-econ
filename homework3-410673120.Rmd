@@ -118,7 +118,7 @@ After you left home for office, you notice the weather is cloudy. Which mood you
 ```{python ans15}
 moodLogi = max(P_mood_cond_weather.loc["cloudy",:]) == P_mood_cond_weather.loc["cloudy",:]
 est_mood= P_mood_cond_weather.columns[moodLogi][0]
-#q1ans['ans15']=est_mood
+q1ans['ans15']=est_mood
 ```
 
 ## 2. Numerical integration
@@ -195,8 +195,8 @@ where $f=1/log(x)$, $a=2,b=3$, $N=100$, and $x^*_i$ is the midpoint of its corre
 logSum=0
 for i in range(len(x_partition)-1):
   logSum+=f(x_star(x_partition))[i]*(x_partition[i+1]-x_partition[i])
-  
-# q2ans['ans23']=rsum
+rsum = logSum
+q2ans['ans23']=rsum
 ```
 
 ### 2.4 Riemann sum function
@@ -210,7 +210,7 @@ def riemannsum(fun,interval,N=101,alpha=0.5):
       logSum+=fun(x_star(x_partition,alpha))[i]*(x_partition[i+1]-x_partition[i])
     return(logSum)
 
-# q2ans['riemannsum function']=riemannsum
+q2ans['riemannsum function']=riemannsum
 ```
 
 
