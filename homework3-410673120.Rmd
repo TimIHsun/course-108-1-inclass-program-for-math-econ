@@ -145,7 +145,6 @@ f = lambda x: 1/np.log(x)
 if "q2ans" not in globals() or not isinstance(q1ans,(dict,)):
     q2ans = dict([])
 
-
 ```
 
 ### 2.1 A partition
