@@ -126,3 +126,12 @@ probability_space_2t={
 }
 ```
 
+
+
+
+
+```{python}
+np.arange(0,4)
+[ix for ix in itertools.combinations(np.arange(0,5), 3)]
+```
+
