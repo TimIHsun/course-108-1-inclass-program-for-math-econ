@@ -69,6 +69,7 @@ x0.ndim
 ```
 
 ```{python}
+x1
 x1_flat=x1.flatten()
 x1_flat
 print(x1_flat)
@@ -108,6 +109,18 @@ a/b
 ```
 
 ```{python}
+x0=np.array([ 1., 0., 0.])
+x1=np.array([[ 1., 2., 3.]])
+x2=x1.reshape((3,1))
+x0
+x1
+x2
+x0+x1
+x0+x2
+```
+
+
+```{python}
 def addsubtract(a,b):
    if a > b:
        return a - b
@@ -134,7 +147,6 @@ b = np.array([2.0, 2.0, 2.0])
 a
 b
 
-a*b
 a@b #內積
 ```
 
@@ -147,8 +159,50 @@ x1.T
 ```
 
 ```{python}
+A=np.array(
+  [
+    [2, 4],
+    [1, 3]
+  ]
+)
+
+B=np.array(
+  [
+    [-1, 2],
+    [-3, 4]
+  ]
+)
+
+A*B # 不是矩陣相乘AB
+
+A@B # 才是矩陣相乘
+```
+
+
+```{python}
 from numpy.linalg import inv, det
 ```
+
+```{python}
+bold_0 = np.zeros(10)
+print(bold_0)
+bold_0.shape
+
+bold_1 = np.ones(10)
+print(bold_1)
+bold_1.shape
+```
+
+```{python}
+bold_0.shape=(10,1) # 10 by 1 vector
+print(bold_0)
+bold_0.shape
+
+bold_0.shape=(2,5) # 2 by 5 matrix
+print(bold_0)
+bold_0.shape
+```
+
 
 ```{python}
 y=np.array([[2,3,4,6]]).T
@@ -183,6 +237,7 @@ x2=np.array([4,7,3])
 x2.shape=(3,1)
 x2
 X=np.column_stack((x1,x2))
+X
 ```
 #投射矩陣
 ```{python}

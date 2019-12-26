@@ -15,5 +15,12 @@ use_condaenv("myEnvironment", required = T)
 
 
 ```{python}
-
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import math # 用math.mathfunction：non vectorized function
+from numpy.random import default_rng
+# 8.8 randon number generator
+# g_rv = defaut_rng() # to initiate a generator object
+from scipy.linalg import inv, solve, det, eig
 ```
