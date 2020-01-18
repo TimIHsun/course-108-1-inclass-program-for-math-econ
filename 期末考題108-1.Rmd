@@ -1,0 +1,213 @@
+---
+title: "期末考題"
+date: "1/12/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+params:
+  name: "邱奕勳"
+  id: "410673120"
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=F)
+
+library(reticulate)
+use_python("/Users/tim/anaconda3/envs/myEnvironment",required = T)
+use_condaenv("myEnvironment", required = T)
+```
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import math # 用math.mathfunction：non vectorized function
+from numpy.random import default_rng
+# 8.8 randon number generator
+g_rv = default_rng() # to initiate a generator object
+from scipy.linalg import inv, solve, det, eig
+
+```
+
+
+### I. Cobb-Douglas class
+請完成一個CobbDouglas class定義，它必需包含至少下面提到的6個methods（q, mpl, mpk, cost, ld, mc）, 程式答案寫在此大題最後的 qI code chunk：
+```{python}
+class CobbDouglas:
+    phi = 1
+    def __init__(self,beta, phi):
+        self.beta = beta
+        self.phi = phi
+    def q(self,l,k,mu):
+        phi=self.phi
+        beta=self.beta
+        q= phi*((k**beta)*(l**(1-beta)))*math.exp(mu)
+        return q
+    def mpl(self,l,k,mu):
+        phi=self.phi
+        beta=self.beta
+        mpl=phi*(k**beta)*math.exp(mu)*(1-beta)*(l**(-beta))
+        return mpl
+    def mpk(self,l,k,mu):
+        phi=self.phi
+        beta=self.beta
+        mpk= math.exp(mu)*phi*beta*(k**(beta-1))*(l**(1-beta))
+        return mpk
+    def cost(self,q,w,r,mu):
+        phi=self.phi
+        beta=self.beta
+        k=math.exp(-mu)*(w*beta/(r*(1-beta)))**(1-beta)*q
+        l=math.exp(-mu)*(w*beta/(r*(1-beta)))**(-beta)*q
+        costF= r*k+w*l
+        return costF
+    def ld(self,q,w,r,mu):
+        phi=self.phi
+        beta=self.beta
+        ld=math.exp(-mu)*(w*beta/(r*(1-beta)))**(-beta)*q
+        return ld
+    def mc(self,q,w,r,mu):
+        phi=self.phi
+        beta=self.beta
+        mc=math.exp(-mu)*(w*beta/(r*(1-beta)))**(1-beta)+math.exp(-mu)*(w*beta/(r*(1-beta)))**(-beta)
+        return mc
+
+                
+       
+```
+which represents a class of firms equipped with Cobb-Douglas production function like:
+$$q_t = \phi[k_t^{\beta} l_t^{1-\beta}]\exp(\mu_t);$$
+
+The detail of its definition is to provide the following usages: 
+  
+  1. Produce a Cobb-Douglas production firm as an instance. The following call produces an instance of a Cobb-Douglous production function firm, called cd1, with $\beta=0.5$ and $\phi=1$. For simplicity, assume $\phi=1$ to be a class attribute that is shared across all firms in this class.    
+  ```{python} 
+  cd1=CobbDouglas(0.5,1) 
+  ```
+
+  2. The following method produces the output of the firm under $l=2$, $k=3$ and $\mu=0.3$  
+  ```{python}
+  cd1.q(l=2,k=3,mu=0.3)
+  ```
+
+  The marginal productivity of labor (mpl) and of capital (mpk) are defined as:  
+  $$\begin{eqnarray}
+  mpl &=&\frac{\partial q_t}{\partial l_t}\\
+  mpk &=&\frac{\partial q_t}{\partial k_t} 
+  \end{eqnarray}$$
+
+  3. The following method produces the marginal productivity of labor under $l=2$, $k=3$ and $\mu=0.3$$  
+  ```{python}
+  cd1.mpl(l=2,k=3,mu=0.3)
+  ```
+
+  4. The following method produces the marginal productivity of capital under $l=2$, $k=3$ and $\mu=0.3$$  
+  ```{python}  
+  cd1.mpk(l=2,k=3,mu=0.3)  
+  ```
+
+Given $r_t$ and $w_t$ as the rental price of capital $k_t$ and the wage of labor $l_t$, the cost  of a firm's production will be 
+$$w_tl_t+r_tk_t.$$
+Under cost minimization, for a firm to produce $q_t$ under technology level $\mu_t$, its inputs must satisfy the following two conditions:
+
+  (A) $\frac{\partial q_t}{\partial k_t}/\frac{\partial q_t}{\partial l_t}=r_t/w_t,$ and
+  (B) $q_t=f(l_t,k_t,\mu_t)$ where $f(.)$ represent the production function of the firm. 
+  
+  5. The following method will produce the cost function (under cost minimization) for the firm under $q=10$, $w=2$, $r=5$, and $\mu=0.3$:  
+  ```{python}
+  cd1.cost(q=10, w=2,r=5,mu=0.3)
+  ```
+
+  6. The following method will produce the demand of labor (under cost minimization) under $q=10$, $w=2$, $r=5$, and $\mu=0.3$:  
+  ```{python}
+  cd1.ld(q=10, w=2,r=5, mu=0.3)
+  ```
+
+The marginal cost of production is defined as
+$$mc_t\equiv\frac{\partial cost_t}{\partial q_t},$$
+where $cost_t$ is the cost function of the firm.
+
+  7. The following method will produce the marginal cost of production  under $q=10$, $w=2$, $r=5$, and $\mu=0.3$:  
+  ```{python}
+  cd1.mc(q=10, w=2,r=5, mu=0.3)
+  ```
+
+```{python qI}
+cd1=CobbDouglas(0.5,1) 
+cd1.q(l=2,k=3,mu=0.3)
+cd1.mpl(l=2,k=3,mu=0.3)
+cd1.mpk(l=2,k=3,mu=0.3)
+cd1.cost(q=10, w=2,r=5,mu=0.3)
+cd1.ld(q=10, w=2,r=5, mu=0.3)
+cd1.mc(q=10, w=2,r=5, mu=0.3)
+```
+
+
+### II. Simulation
+Assume there are infinitely many Cobb-Douglas firms (aka CD firms) with different labor intensity, i.e. different $\beta$ values, and difference technology levels, i.e. different $\mu$ values. Assume:
+
+  * $\beta \in (0,1)$ follows $beta(a=2, b=5)$ distribution.
+  
+  * $\mu$ follows standard normal distribution.
+  
+1. Randomly generate 500 CD firms as 500 CobbDoublass class instances (using the result of part I). Save them in a dictionary, called **CDFirms**. 
+
+```{python qII_1}
+beta500=g_rv.beta(a=2,b=5,size=500)
+mu500= g_rv.standard_normal(size=500)
+
+
+CDFirmlist=[CobbDouglas(beta500[i],1) for i in range(0,500)]
+CDFirmNameList=["cd"+str(np.arange(501)[i+1]) for i in range(0,500)]  
+CDFirms={}
+for i in range(0,500):
+  CDFirms[CDFirmNameList[i]]=CDFirmlist[i]
+
+CDFirms
+```
+
+The following questions should be applied to all those 500 firms.
+
+*** 
+
+The cost method in part I is a long-run cost function in which capital level is free to choose. In the short-run, capital $k$ is fixed for each firm; only $l$ is free to choose. In this case the optimal short-run labor demand should satisfy:
+$$mpl=w\ \mbox{and} \ q=f(l,k)$$
+
+2. Add a k attribute to each firm where k's value is randomly drawn from a uniform(0.5, 1.5) distribution. 
+
+```{python qII_2}
+k500=g_rv.uniform(0.5,1.5,size=500)
+
+for i in range(0,500):
+  CDFirms["cd"+str(np.arange(501)[i+1])].k=k500[i]
+
+```
+
+3. Add a short-run labor demand method, srld, to each instance, so that, the following method will produce its labor demand under $q=10, w=2, \mu $ where $\mu$ is from question 1's random drawn outcome (therefore you need to add mu attribute to each instance):
+```{python}
+cd1.srld(q=10, w=2, mu)
+```
+
+```{python qII_3}
+def srld(self,q,w,mu):
+    phi=self.phi
+    beta=self.beta
+    srld= (q*(1-beta)/w)**(1/(2*beta))
+    return srld
+
+for i in range(0,500):
+  CDFirms["cd"+str(np.arange(501)[i+1])].srld=srld
+
+```
+
+In the short-run, the marginal cost of production is the marginal change of $q$ to its cost $wl+rk$. Since $r$ and $k$ are not up to the firm's choice in the short-run, the short-run marginal cost of the firm is:
+$$
+w \frac{\partial srld}{\partial q},
+$$
+where srld is the short-run labor demand method as a function.
+
+4. Based on srld method, **numerically compute** the partial derivative of srld with respect to q with each firm's $q=10, w=2, \mu$. (Use an 1e-5 small change for your numerical derivation) and derive each firm's marginal cost value.
+
+```{python qII_4}
+
+```
+

@@ -57,7 +57,7 @@ isinstance(YellowRectangle, YellowRectangle)
 yr2=YellowRectangle(1,3)
 yr2.compute_area()
 YR(5,10)
-
+yr2
 ```
 
 ```{python}
@@ -387,7 +387,7 @@ lr1.predict()
 # self.mse
 ```
 ```{python}
-beta_hat=y@inv((X.T@X))@X.T
+beta_hat=y_train@inv((X_train.T@X_train))@X_train.T
 beta_hat.shape
 beta_hat
 ```
